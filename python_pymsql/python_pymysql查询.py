@@ -1,0 +1,29 @@
+import pymysql
+
+# 创建连接对象
+conn = pymysql.connect(host='localhost',
+                       port=3306,
+                       user='root',
+                       password='123456',
+                       database='jing_dong',
+                       charset='utf8')
+
+# 获取游标
+cursor = conn.cursor()
+
+sql = "select * from goods;"
+
+# 执行sql语句
+cursor.execute(sql)
+
+# 获取数据  返回的结果是一个元组
+# row = cursor.fetchone()  # 返回第一条数据
+
+result = cursor.fetchall()
+for row in result:
+    print(row)
+
+# 关闭游标
+cursor.close()
+# 关闭连接
+conn.close()

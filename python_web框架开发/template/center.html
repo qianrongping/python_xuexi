@@ -10,14 +10,14 @@
     <script src="/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function(){
-            // 发送ajax请求，获取个人中心数据
-            $.get("center_data.html",function (data) {
-                // ajax 成功回调函数
+            // 发ajxa请求
+            $.get("center_data.html",function(data){
+                // ajax成功回调
                 // 获取table标签
                 var $table = $(".table");
-                // 如果指定了返回数据的解析方式是json，那么data就是一个js对象
-                for(var i = 0; i < data.length; i++){
-                    // 根据下标获取每一个个人中心数据js对象
+                // 如果指定了返回数据的解析是json，那么data就是一个js对象
+                for (var i=0; i<data.length; i++){
+                    // 根据下标获取每一个 个人中心数据js对象
                     var oCenterData = data[i];
 
                     // 封装后的每一个tr标签
@@ -34,10 +34,8 @@
                                 '</tr>'
                     // 给table标签追加每一行tr标签
                     $table.append(oTr)
-
                 }
-
-            }, "json");
+            },"json")
             $("input[name='toDel']").each(function(){
                 var currentAdd = $(this);
                 currentAdd.click(function(){

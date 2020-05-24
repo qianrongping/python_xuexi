@@ -2,6 +2,13 @@ import socket
 import threading
 import sys
 import python_framework
+import logging
+
+# 在程序入口模块设置logging日志的配置信息,只配置一次,整个程序都可以使用
+logging.basicConfig(level=logging.DEBUG,
+                    format="%(asctime)s-%(filename)s[lineno:%(lineno)d]-%(levelname)s-%(message)s",
+                    filename="log.txt",
+                    filemode="a")
 
 
 class HttpWebServer(object):
@@ -44,6 +51,7 @@ class HttpWebServer(object):
         # 判断是否是动态资源请求,以后把后缀是.html的请求任务是动态资源请求
         if request_path.endswith(".html"):
             """动态资源请求"""
+            logging.info("动态资源请求地址:"+ request_path)
             # 动态资源请求找web框架进行处理,需要把请求参数给web框架
             # 准备给web框架的参数信息,都要放到字典里面
             env = {
@@ -69,7 +77,7 @@ class HttpWebServer(object):
             new_socket.close()
         else:
             """静态资源请求"""
-
+            logging.info("静态资源请求地址:" + request_path)
             try:
                 # 打开文件读取文件中的数据
                 with open('static' + request_path, 'rb') as file:

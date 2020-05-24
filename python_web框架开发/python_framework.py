@@ -2,7 +2,7 @@
 import time
 import pymysql
 import json
-
+import logging
 # 路由列表
 route_list = [
     # ("/index.html", index),
@@ -39,7 +39,7 @@ def index():
     with open("template/index.html", "r", encoding='utf-8') as file:
         file_data = file.read()
     # 2. 查询数据库,模板里面的变量{%content%} 替换成以后从数据库里面查询的数据
-    conn = pymysql.connect(host='localhost',
+    conn = pymysql.connect(host='120.78.175.170',
                            port=3306,
                            user='root',
                            password='123456',
@@ -80,7 +80,7 @@ def index():
 # 个人中心数据接口
 @route("/center_data.html")
 def center_data():
-    conn = pymysql.connect(host='localhost',
+    conn = pymysql.connect(host='120.78.175.170',
                            port=3306,
                            user='root',
                            password='123456',
@@ -167,6 +167,7 @@ def handle_request(env):
     else:
         # 没有动态资源数据,返回404
         result = not_found()
+        logging.error("请求地址错误:"+ request_path)
         return result
 
     # # 判断请求的动态资源路径,选择指定的函数处理对应的动态资源请求
@@ -180,5 +181,5 @@ def handle_request(env):
     #     return result
 
 
-# if __name__ == '__main__':
-#     center_data()
+if __name__ == '__main__':
+    center_data()

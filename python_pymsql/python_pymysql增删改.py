@@ -18,7 +18,7 @@ if __name__ == '__main__':
 
     # sql = "update goods set price='7999.99' where name='联想p7000';"
 
-    sql = "delete from goods where name='联想p7000';"
+    sql = "delete from goods where name='商务双肩背包';"
     try:
         # 执行sql语句
         cursor.execute(sql)

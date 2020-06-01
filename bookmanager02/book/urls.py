@@ -1,5 +1,6 @@
 from django.conf.urls import url
-from book.views import index, detail,set_cookie
+from book.views import index, detail, set_cookie,  get_cookie, set_session, get_session
+from . import views
 
 urlpatterns = [
     # name 给url取一个别名
@@ -15,4 +16,11 @@ urlpatterns = [
     # 关键字参数
     url(r'^(?P<category_id>\d+)/(?P<book_id>\d+)/$', detail),
     url(f'^set_cookie/$', set_cookie),
+    url(f'^get_cookie/$', get_cookie),
+    url(f'^set_session/$', set_session),
+    url(f'^get_session/$', get_session),
+
+    # url 的第一个参数是 路由,第二个参数 是 视图函数名
+    url(f'^login/$', views.LoginView.as_view()),
+
 ]

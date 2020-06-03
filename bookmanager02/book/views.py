@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -7,19 +9,16 @@ import json
 # Create your views here.
 
 def index(request):
-    """
-    登录成功之后需要跳转到首页
-    注册成功之后需要跳转到首页
-
-    """
+    # 登录成功之后需要跳转到首页
+    # 注册成功之后需要跳转到首页
     # viewname 通过视图名字
     # 路由是动态获取的
     # path = reverse('index')
     # print(path)
 
     # 如果我们设置了namespace,这个时候需要通过namespace:name 来获取路由
-    path = reverse('book:index')
-    print(path)
+    # path = reverse('book:index')
+    # print(path)
 
     # 跳转页面
     # 登录成功之后需要跳转到首页
@@ -224,6 +223,10 @@ def login(request):
         return HttpResponse('首页')
 
 
+def demo(request):
+    return HttpResponse('demo')
+
+
 """
 类视图
 1. 类视图需要需要继承自 View
@@ -242,11 +245,40 @@ def login(request):
 
 """
 from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin  # 检测是否登录模块
 
 
-class LoginView(View):
+class LoginView(LoginRequiredMixin, View):
     def get(self, request):
         return HttpResponse('登录界面的展示')
 
     def post(self, request):
         return HttpResponse('登录的验证')
+
+
+"""
+模板
+"""
+
+
+class HomeView(View):
+
+    def get(self, request):
+        # 1 获取数据
+        username = request.GET.get('username')
+
+        # 2 组织数据
+        context = {
+            'username': username,
+            'age': 14,
+            'birthday': datetime.now(),
+            'firends': ['tom', 'jack', 'rose'],
+            'money': {
+                '2019': 12000,
+                '2020': 18000,
+                '2021': 25000,
+            },
+            'desc': '<script>alert("hot")</script>'
+        }
+        # return render(request, 'detail.html')
+        return render(request, 'index.html', context)

@@ -5,14 +5,14 @@ import time
 t1 = time.time()
 print("开始了")
 
-db = pymysql.connect(host='localhost',
+db = pymysql.connect(host='8.129.186.89',
                      port=3306,
                      user='root',
-                     password='123456',
-                     database='test1',
+                     password='db7b6a8392355c76',
+                     database='wms',
                      charset='utf8')
 cur = db.cursor()
-ex = xlrd.open_workbook("PCB板.xls")
+ex = xlrd.open_workbook("物料导入模板11-PCB板.xls")
 sheet = ex.sheet_by_index(0)
 rows = sheet.nrows
 cols = sheet.ncols
@@ -28,7 +28,6 @@ for row_num in range(1, rows):
             ('%s','%s','%s','%s','%s','0','%s','%s','%s','%s')""" % (
         materiel_code, materiel_name, materiel_spec, materiel_type, use_company,
         category_id, procedure_id, composition_id, memo)
-
     try:
         # 执行sql语句
         cur.execute(sql)
@@ -40,6 +39,7 @@ for row_num in range(1, rows):
         # 对修改失败的数据进行撤销,表示回滚
         db.rollback()
         print(f"失败了", materiel_code)
+        print(e)
 
 # 关闭游标
 cur.close()

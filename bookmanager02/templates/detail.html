@@ -1,0 +1,15 @@
+{#把继承写在最上面#}
+{% extends 'base.html' %}
+
+{#需要改哪里 直接实现block#}
+{% block title %}
+    详情页面
+{% endblock %}
+
+{% block main %}
+<a href="#">戳我有惊喜</a>
+{% endblock main %}
+
+{#不需要某个block 直接重写#}
+{% block footert %}
+{% endblock %}

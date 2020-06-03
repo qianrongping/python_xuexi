@@ -47,16 +47,20 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 注册中间件
+    # 'book.middleware.simpl_middleware',
 ]
 
 ROOT_URLCONF = 'bookmanager02.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',  # 默认引擎
+        # 'BACKEND': 'django.template.backends.jinja2.jinja2', # jinja2 模板
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
+            # 'environment':'jinja2.Environment',  # 默认的
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',

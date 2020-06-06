@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 1 导入Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- 2 定义一个标签 需要给标签添加 id -->
+    <div id="app">
+        <span>{{ message }}</span>
+        <hr>
+        <span v-if="isLogin">欢迎你归来</span>
+
+        <hr>
+        <span v-if="lvevl === 1">白银</span>
+        <span v-else-if="lvevl === 2">钻石</span>
+        <span v-else>王者</span>
+
+        <hr>
+        <span v-if="seen">v-if</span> <br>
+        <span v-show="seen">v-show</span>
+
+    </div>
+    <span v-if='ok'>
+        <h1>title</h1>
+        <p>Paragraph 1</p>
+        <p>Paragraph 2</p>
+    </span>
+
+    <h1 v-if="awesome">Vue is awesome!</h1>
+    <h1 v-else>Oh no 😢</h1>    
+</body>
+
+    <!-- 3 创建Vue实例 -->
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                message:'hello',
+                isLogin:true,
+                lvevl:3,
+                seen:true
+            }
+
+        })
+    </script>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <span>{{messsage}}</span>
+
+        <input type="text" name="todotiem" v-model="newitem"> <button @click="add">添加</button>
+        <hr>
+        <ul>
+            <li v-for="(item,index) in items">
+            <a href="javascript:;" @click="up(index)">↑</a> {{item}}
+            <a href="javascript:;" @click="delitem(index)">删除</a>
+            <a href="javascript:;" @click="down(index)">↓</a>
+            </li>
+        </ul>
+    </div>
+</body>
+
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            messsage:'hello',
+            items:['python','mysql','html'],
+            newitem:'',
+        },
+        methods:{
+            add:function(){
+                this.items.push(this.newitem);
+                this.newitem='';
+            },
+            delitem:function(index){
+                this.items.splice(index,1)
+            },
+
+            up:function(index){
+                // 获取当前的元素
+                current=this.items[index]
+                // 先把当前的元素删除
+                this.items.splice(index,1)
+                // 再添加  添加的时候让它的索引-1
+                this.items.splice(index-1,0,current)
+            },
+            down:function(index){
+                
+                //  获取当前的元素
+                current=this.items[index]
+                // 先把当前的元素删除
+                this.items.splice(index,1)
+                // 再添加  添加的时候让它的索引+1
+                this.items.splice(index+1,0,current)
+            }
+
+        }
+
+
+    })
+</script>
+</html>

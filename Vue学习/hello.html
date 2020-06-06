@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 开发环境 -->
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        {{ message }}
+        <hr>
+        {{ name }}
+        <hr>
+
+
+        <span v-bind:title="showmessage">
+            鼠标悬停几秒钟查看此处动态绑定的提示信息!
+        </span>
+        <hr>
+        <!-- 上下两个写法都可以 -->
+        <span :title="showmessage">
+            鼠标悬停几秒钟查看此处动态绑定的提示信息!
+        </span>
+
+        
+
+
+      </div>
+
+</body>
+        
+    <script>
+        var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!',
+            name: 'rubin',
+            showmessage:'页面加载于'+ new Date().toLocaleString()
+        }
+        })
+    </script>
+</html>

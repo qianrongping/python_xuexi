@@ -12,16 +12,18 @@
 <body>
     <!-- 2 定义一个标签 需要给标签添加 id -->
     <div id="app">
-        <span>[[ message ]]</span>
+        <span>[[message]]</span>
 
         <button @click="login">登录</button>
-    </div>
 
         <hr>
         [[username]]
 
         <hr>
         <button @click="login2">post</button>
+    </div>
+
+
 
 </body>
 
@@ -50,7 +52,6 @@
                 },
 
                 login2:function () {
-                    alert("走了吗")
                     let url = 'http://127.0.0.1:8000/rece/';
                     axios.post(url, {
                         'username':'ruhua',
